@@ -48,9 +48,9 @@ jobs:
             ${{ secrets.DOCKERHUB_USERNAME }}/ci-cd-demo:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/ci-cd-demo:${{ github.sha }}
 
-  # deploy:
-  #   needs: docker
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Trigger Render Deploy
-  #       run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deploy
+        run: curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
